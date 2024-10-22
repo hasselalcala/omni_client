@@ -8,9 +8,6 @@ async fn main() -> Result<()> {
     //Initialize the OmniInfo
     let omni = OmniInfo::new().await?;
 
-    println!("Owner: {:?}", omni.owner);
-    println!("Contract ID:  {:?}", omni.contract.id());
-
     println!("Calling contract...");
     // Set the greeting
     let set_result = omni.call_contract(
