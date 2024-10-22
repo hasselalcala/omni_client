@@ -1,0 +1,12 @@
+[package]
+name = "omni_cliente"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+omnibox = {git = "https://github.com/hasselalcala/omnibox.git", rev = "0cd25f4fe7a9c7e1259a23e96ca0cf3d1de5f52a"}
+
+
+anyhow = "1.0.90"
+near-sdk = "5.5.0"
+tokio = { version = "1.40.0", features = ["full"] }
