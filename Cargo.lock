@@ -2052,11 +2052,18 @@ dependencies = [
 [[package]]
 name = "omnibox"
 version = "0.1.0"
-source = "git+https://github.com/hasselalcala/omnibox.git?rev=fdb8f39cfed9d45941b26abd069d61697a28bb83#fdb8f39cfed9d45941b26abd069d61697a28bb83"
+source = "git+https://github.com/hasselalcala/omnibox.git?rev=b4018cca839e0c3406ceec292e3823f1d3fec1e8#b4018cca839e0c3406ceec292e3823f1d3fec1e8"
 dependencies = [
  "anyhow",
+ "async-trait",
+ "near-crypto",
+ "near-jsonrpc-client",
+ "near-jsonrpc-primitives",
+ "near-primitives",
  "near-sdk",
  "near-workspaces",
+ "serde",
+ "serde_json",
  "tokio",
 ]
 

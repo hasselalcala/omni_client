@@ -2,16 +2,20 @@ use anyhow::Result;
 use near_sdk::serde_json::json;
 use omnibox::OmniInfo;
 
-
 #[tokio::main]
-async fn main() -> Result<()> {
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
     //Initialize the OmniInfo
-    let omni = OmniInfo::new().await?;
+    let omni = OmniInfo::new().await?; //<<-- compilar el contrato que llama al MPC
+
+    println!("\nCHUNK: {:?}", omni.worker.view_chunk().await?);
+
+    println!("\nBLOCK: {:?}", omni.worker.view_block().await?);
 
     println!("Calling contract...");
     // Set the greeting
-    let set_result = omni.call_contract(
-            "set_greeting",
+    let set_result = omni
+        .call_contract(
+            "set_greeting", // contrato que por dentro llama al sign
             Some(json!({"greeting": "Hello from Hassel"})),
         )
         .await?;

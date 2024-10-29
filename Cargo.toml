@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-omnibox = {git = "https://github.com/hasselalcala/omnibox.git", rev = "fdb8f39cfed9d45941b26abd069d61697a28bb83"}
+omnibox = {git = "https://github.com/hasselalcala/omnibox.git", rev = "b4018cca839e0c3406ceec292e3823f1d3fec1e8"}
 
 
 anyhow = "1.0.90"
