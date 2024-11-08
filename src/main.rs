@@ -1,35 +1,17 @@
 use anyhow::Result;
-use near_sdk::serde_json::json;
 use omnibox::OmniInfo;
 
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    //Initialize the OmniInfo
-    let omni = OmniInfo::new().await?; //<<-- compilar el contrato que llama al MPC
+async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
+    let omni = OmniInfo::new().await?;
 
-    println!("\nCHUNK: {:?}", omni.worker.view_chunk().await?);
-
-    println!("\nBLOCK: {:?}", omni.worker.view_block().await?);
-
-    println!("Calling contract...");
-    // Set the greeting
-    let set_result = omni
-        .call_contract(
-            "set_greeting", // contrato que por dentro llama al sign
-            Some(json!({"greeting": "Hello from Hassel"})),
-        )
-        .await?;
-
-    match set_result {
-        Some(value) => println!("Set greeting result: {:?}", value),
-        None => println!("Greeting set successfully (no return value)"),
+    println!("\n🚀 Creating new sign request...");
+    match omni.sign("Message to sign".to_string()).await {
+        Ok(_) => println!("✅ Sign request completed successfully"),
+        Err(e) => println!("❌ Sign request failed: {:?}", e),
     }
 
-    println!("Getting greeting...");
-    // Get the greeting
-    let get_result = omni.view_contract("get_greeting", None).await?;
-    let greeting = get_result.as_str().unwrap_or("Failed to get greeting");
-    println!("Greeting: {}", greeting);
+    tokio::time::sleep(tokio::time::Duration::from_secs(30)).await;
 
     Ok(())
 }

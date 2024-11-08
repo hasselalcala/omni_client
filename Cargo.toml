@@ -4,9 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-omnibox = {git = "https://github.com/hasselalcala/omnibox.git", rev = "b4018cca839e0c3406ceec292e3823f1d3fec1e8"}
-
-
+omnibox = { path = "../omnibox" }
 anyhow = "1.0.90"
 near-sdk = "5.5.0"
-tokio = { version = "1.40.0", features = ["full"] }
+tokio = "1.41.0"
